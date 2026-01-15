@@ -1,5 +1,7 @@
-#!/bin/bash
+DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
+curl \
+build-essential \
+libpq-dev \
+&& rm -rf /var/lib/apt/lists/*
 
-pip3 install -r requirements.txt
-
-echo "END"
+pip install -r requirements.txt
