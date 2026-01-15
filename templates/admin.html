@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RSVP — Admin</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+body{margin:24px;background:#faf7f8;color:#111}
+h1{margin:0 0 12px}
+table{border-collapse:collapse;width:100%;background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden}
+th,td{padding:10px 12px;border-bottom:1px solid #eee;vertical-align:top;font-size:14px}
+th{text-align:left;background:#f3f3f3}
+code{white-space:pre-wrap}
+.badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px}
+.ok{background:#e7fff3}
+.no{background:#ffe7e7}
+.small{opacity:.75;font-size:12px}
+</style>
+</head><body>
+<h1>RSVP — ответы</h1>
+<table>
+<thead><tr>
+<th>Когда</th><th>Имя</th><th>Придёт</th><th>Еда</th><th>Алкоголь</th><th>Все поля (JSON)</th>
+</tr></thead>
+<tbody>
+{% for r in rows %}
+<tr>
+<td class="small">{{ r.created_at }}</td>
+<td>{{ r.fio or '—' }}</td>
+<td>{% if r.attending is none %}—{% elif r.attending %}<span class="badge ok">да</span>{% else %}<span class="badge no">нет</span>{% endif %}</td>
+<td>{{ r.food or '—' }}</td>
+<td>{{ r.alcohol or '—' }}</td>
+<td><code>{{ r.data_json }}</code></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</body></html>
