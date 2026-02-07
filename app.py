@@ -20,7 +20,6 @@ class RSVP(db.Model):
 
     fio = db.Column(db.String(255), nullable=True)
     attending = db.Column(db.Boolean, nullable=True)
-    food = db.Column(db.String(255), nullable=True)
     alcohol = db.Column(db.String(255), nullable=True)
 
     data_json = db.Column(db.Text, nullable=False)
@@ -50,10 +49,9 @@ def _extract_fields(form: Dict[str, Any]) -> Dict[str, Optional[str]]:
     # Native Flask form
     fio = _first_nonempty([form.get('fio'), form.get('name')])
     attending_raw = _first_nonempty([form.get('attending')])
-    food = _first_nonempty([form.get('food')])
     alcohol = _first_nonempty([form.get('alcohol')])
 
-    if any([fio, attending_raw, food, alcohol]):
+    if any([fio, attending_raw, alcohol]):
         attending = None
         if attending_raw:
             s = attending_raw.strip().lower()
@@ -61,7 +59,7 @@ def _extract_fields(form: Dict[str, Any]) -> Dict[str, Optional[str]]:
                 attending = True
             if 'не получится' in s or 'не смогу' in s or s in ('no','нет','false','0'):
                 attending = False
-        return {'fio': fio, 'attending': attending, 'food': food, 'alcohol': alcohol}
+        return {'fio': fio, 'attending': attending, 'alcohol': alcohol}
 
     keys = list(form.keys())
 
@@ -79,13 +77,6 @@ def _extract_fields(form: Dict[str, Any]) -> Dict[str, Optional[str]]:
             attending_key = k
             break
 
-    food_key = None
-    for k in keys:
-        lk = k.lower()
-        if "еда" in lk or "food" in lk:
-            food_key = k
-            break
-
     alcohol_key = None
     for k in keys:
         lk = k.lower()
@@ -95,7 +86,6 @@ def _extract_fields(form: Dict[str, Any]) -> Dict[str, Optional[str]]:
 
     fio = _first_nonempty([form.get(fio_key)]) if fio_key else None
     attending_raw = _first_nonempty([form.get(attending_key)]) if attending_key else None
-    food = _first_nonempty([form.get(food_key)]) if food_key else None
     alcohol = _first_nonempty([form.get(alcohol_key)]) if alcohol_key else None
 
     attending = None
@@ -106,7 +96,7 @@ def _extract_fields(form: Dict[str, Any]) -> Dict[str, Optional[str]]:
         if "не получится" in s or "не смогу" in s or s in ("no", "нет", "false", "0"):
             attending = False
 
-    return {"fio": fio, "attending": attending, "food": food, "alcohol": alcohol}
+    return {"fio": fio, "attending": attending, "alcohol": alcohol}
 
 
 @app.get("/")
@@ -126,7 +116,6 @@ def rsvp():
     rec = RSVP(
         fio=fields["fio"],
         attending=fields["attending"],
-        food=fields["food"],
         alcohol=fields["alcohol"],
         data_json=json.dumps(meaningful, ensure_ascii=False),
         ip=request.headers.get("X-Forwarded-For", request.remote_addr),
@@ -152,7 +141,6 @@ def admin():
                 created_at=r.created_at.strftime("%Y-%m-%d %H:%M:%S UTC"),
                 fio=r.fio,
                 attending=r.attending,
-                food=r.food,
                 alcohol=r.alcohol,
                 data_json=r.data_json,
             )
