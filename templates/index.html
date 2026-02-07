@@ -5994,10 +5994,8 @@
                                                 <option value="К сожалению, не получится прийти">К сожалению, не получится прийти</option>
                                             </select>
                                         </label>
-                                        <label class="ff-field"> <span class="ff-label">Количество гостей</span>
-                                            <input class="ff-input" max="20" min="1" name="guests_count" type="number" value="1" /> </label>
-                                        <label class="ff-field ff-wide"> <span class="ff-label">Предпочтения по еде</span>
-                                            <input class="ff-input" name="food" placeholder="Например: мясо / рыба / вегетарианское" /> </label>
+                                        <label class="ff-field ff-wide"> <span class="ff-label">С кем будете?</span>
+                                            <input class="ff-input" name="guests_count"/> </label>
                                         <label class="ff-field ff-wide"> <span class="ff-label">Предпочтения по напиткам</span>
                                             <input class="ff-input" name="alcohol" placeholder="Например: вино / шампанское / без алкоголя" /> </label>
                                         <label class="ff-field ff-wide"> <span class="ff-label">Комментарий</span>
@@ -7169,7 +7167,7 @@
                     </div>
                     <div class="t396__elem tn-elem tn-elem__17383629611747335422314 t-animate" data-animate-delay="0.5" data-animate-distance="100" data-animate-duration="3" data-animate-mobile="y" data-animate-style="fadeinleft" data-elem-id="1747335422314" data-elem-type="text" data-field-axisx-value="left" data-field-axisy-value="top" data-field-container-value="grid" data-field-fontsize-res-320-value="19" data-field-fontsize-value="28" data-field-height-value="43" data-field-heightunits-value="px" data-field-left-res-320-value="-120" data-field-left-res-480-value="-40" data-field-left-res-640-value="40" data-field-left-res-960-value="200" data-field-left-value="320" data-field-leftunits-value="px" data-field-textfit-value="autoheight" data-field-top-res-320-value="489" data-field-top-value="467" data-field-topunits-value="px" data-field-width-value="560" data-field-widthunits-value="px">
                         <div class="tn-atom" field="tn_text_1747335422314">
-                        	<a href="https://t.me/stas_3005" target="_blank" class="zero-link">
+                        	<a href="https://t.me/Foreverrrr_sixteen" target="_blank" class="zero-link">
                         		Telegram
                         	</a>
                         </div>
@@ -7182,7 +7180,7 @@
                     </div>
                     <div class="t396__elem tn-elem tn-elem__17383629611747494867212 t-animate" data-animate-delay="0.7" data-animate-distance="100" data-animate-duration="3" data-animate-mobile="y" data-animate-style="fadeinleft" data-elem-id="1747494867212" data-elem-type="text" data-field-axisx-value="left" data-field-axisy-value="top" data-field-container-value="grid" data-field-fontsize-res-320-value="19" data-field-fontsize-value="28" data-field-height-value="43" data-field-heightunits-value="px" data-field-left-res-320-value="-120" data-field-left-res-480-value="-30" data-field-left-res-640-value="50" data-field-left-res-960-value="210" data-field-left-value="320" data-field-leftunits-value="px" data-field-textfit-value="autoheight" data-field-top-res-320-value="301" data-field-top-value="723" data-field-topunits-value="px" data-field-width-value="560" data-field-widthunits-value="px">
                         <div class="tn-atom" field="tn_text_1747494867212">
-                        	<a href="https://t.me/Foreverrrr_sixteen" target="_blank" class="zero-link">
+                        	<a href="https://t.me/stas_3005" target="_blank" class="zero-link">
                         		Telegram
                         	</a>
                         </div>
@@ -7334,8 +7332,11 @@
 #rec1738362961 .tn-elem[data-elem-id="1747335422311"]{
   pointer-events: none !important;
 }
-
+#rec1738362961 .tn-elem[data-elem-id="1747494867204"]{
+  pointer-events: none !important;
+}
 </style>
+
 <style>
 /* белый текст для ссылок в Zero-кнопках */
 .zero-link,
@@ -7346,6 +7347,34 @@
   text-decoration: none !important;
 }
 </style>
+
+<script>
+document.addEventListener('click', function(e){
+  const el = e.target.closest('.tn-elem');
+  if(el) console.log('CLICK elem-id=', el.getAttribute('data-elem-id'));
+}, true);
+</script>
+
+<style>
+/* Цвет текста в названиях полей */
+.flask-form .ff-label{
+  color: #ffffff !important;
+}
+/* Цвет текста в полях */
+.flask-form .ff-input{
+  color: #000000 !important;
+}
+/* Цвет текста в форме */
+.flask-form .ff-msg{
+  color: #ffffff !important;
+}
+
+/* Плейсхолдеры (они обычно серые) */
+.flask-form .ff-input::placeholder{
+  color: #756767 !important;
+}
+</style>
+
 </body>
 
 </html> {% endraw %}
