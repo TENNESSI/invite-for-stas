@@ -3133,15 +3133,15 @@
             <!-- T396 -->
             <style>
             #rec1738362921 .t396__artboard {
-                height: 2000px;
+                height: 1610px;
             }
             
             #rec1738362921 .t396__filter {
-                height: 2000px;
+                height: 1610px;
             }
             
             #rec1738362921 .t396__carrier {
-                height: 2000px;
+                height: 1610px;
                 background-position: center center;
                 background-attachment: scroll;
                 background-size: cover;
@@ -3182,7 +3182,7 @@
                 #rec1738362921 .t396__artboard,
                 #rec1738362921 .t396__filter,
                 #rec1738362921 .t396__carrier {
-                    height: 1000px;
+                    height: 690px;
                 }
                 #rec1738362921 .t396__artboard {
                     background-color: transparent;
@@ -5723,7 +5723,7 @@
                     left: calc(50% - 160px + -78px);
                     ;
                     width: 477px;
-                    height: 870px;
+                    height: auto;
                 }
             }
             
@@ -5958,7 +5958,7 @@
                         <div class="tn-atom"> <img alt="" class="tn-atom__img t-img" data-original="https://static.tildacdn.com/tild3261-3962-4231-b339-323431303564/Kokomi_app_icon-Phot.png" imgfield="tn_img_1766445917747000004" src="https://thb.tildacdn.com/tild3261-3962-4231-b339-323431303564/-/resize/20x/Kokomi_app_icon-Phot.png" /> </div>
                     </div>
                     <div class="t396__elem tn-elem tn-elem__17383629411684925590622 t-animate" data-animate-delay="0.3" data-animate-distance="100" data-animate-duration="2" data-animate-mobile="y" data-animate-style="fadeinright" data-elem-id="1684925590622" data-elem-type="text" data-field-axisx-value="left" data-field-axisy-value="top" data-field-container-value="grid" data-field-fontsize-res-320-value="19" data-field-fontsize-value="38" data-field-height-value="168" data-field-heightunits-value="px" data-field-left-res-320-value="3" data-field-left-res-480-value="109" data-field-left-res-640-value="189" data-field-left-res-960-value="349" data-field-left-value="298" data-field-leftunits-value="px" data-field-textfit-value="autoheight" data-field-top-res-320-value="150" data-field-top-value="240" data-field-topunits-value="px" data-field-width-res-320-value="314" data-field-width-value="604" data-field-widthunits-value="px">
-                        <div class="tn-atom" field="tn_text_1684925590622">От всего сердца просим Вас воздержаться от криков "Горько!" и сохранить атмосферу уютного семейного праздника. Просим вместо цветов принести бутылочку вина, так как после торжества Мы планируем уехать в свадебное путешествие и не сможем насладиться их красотой.</div>
+                        <div class="tn-atom" field="tn_text_1684925590622">От всего сердца просим вас воздержаться от криков "Горько!" и сохранить атмосферу уютного семейного праздника</div>
                     </div>
                     <div class="t396__elem tn-elem tn-elem__17383629411766480726986000001 t-animate" data-animate-delay="0.2" data-animate-distance="100" data-animate-duration="3" data-animate-mobile="y" data-animate-style="fadeinleft" data-elem-id="1766480726986000001" data-elem-type="image" data-field-axisx-value="left" data-field-axisy-value="top" data-field-container-res-320-value="grid" data-field-container-value="grid" data-field-fileheight-value="900" data-field-filewidth-value="600" data-field-height-res-320-value="429" data-field-height-res-480-value="524" data-field-height-value="1109" data-field-heightmode-value="hug" data-field-heightunits-value="px" data-field-left-res-320-value="28" data-field-left-value="614" data-field-leftunits-value="px" data-field-top-res-320-value="738" data-field-top-value="581" data-field-topunits-value="px" data-field-width-res-320-value="286" data-field-width-value="739" data-field-widthmode-value="fixed" data-field-widthunits-value="px">
                         <div class="tn-atom"> <img alt="" class="tn-atom__img t-img" data-original="https://static.tildacdn.com/tild3763-3762-4861-a232-613632636536/__4-Photoroom.png" imgfield="tn_img_1766480726986000001" src="https://thb.tildacdn.com/tild3763-3762-4861-a232-613632636536/-/resize/20x/__4-Photoroom.png" /> </div>
@@ -7374,90 +7374,7 @@ document.addEventListener('click', function(e){
   color: #756767 !important;
 }
 </style>
-<script>
-(function(){
-  const target = new Date("2026-06-26T15:30:00+04:00");
 
-  const prefix = "timer-element-6b23f2b64430cf0e6d5173cc57664ff2";
-  const elDays  = document.getElementById(prefix + "-days");
-  const elHours = document.getElementById(prefix + "-hours");
-  const elMins  = document.getElementById(prefix + "-minutes");
-  const elSecs  = document.getElementById(prefix + "-seconds");
-
-  // Находим "узел с числом", НЕ уничтожая вложенную разметку
-  function setTimerValue(el, value){
-    if(!el) return;
-
-    // 1) если внутри уже есть span/div — вероятно там сидит число
-    let num = el.querySelector(".timer-num, .timer-value, span, div");
-    if(num && num !== el){
-      // но не трогаем сепараторы и подписи (часто отдельные spans)
-      // если внутри много span-ов — берём самый "глубокий" где реально число
-      const candidates = Array.from(el.querySelectorAll("span,div"))
-        .filter(n => n.children.length === 0) // лист
-        .filter(n => (n.textContent || "").trim().match(/^\d+$/) || (n.className || "").match(/num|value/i));
-      if(candidates.length) num = candidates[0];
-      num.textContent = value;
-      return;
-    }
-
-    // 2) если вложенной структуры нет — просто обновляем текстовый узел,
-    // не делаем el.textContent=..., чтобы не снести потомки (если они появятся)
-    // создаём/обновляем первый текстовый node
-    const tn = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
-    if(tn) tn.nodeValue = value;
-    else el.insertBefore(document.createTextNode(value), el.firstChild);
-  }
-
-  function pad2(n){ return String(n).padStart(2, "0"); }
-
-  // ===== КРУГ ПРОГРЕССА =====
-  // Ищем circle внутри этого же таймера (не глобально!)
-  const timerBox = elDays ? elDays.closest(".timer") || elDays.parentElement : null;
-  const circle = timerBox ? timerBox.querySelector("svg circle") : null;
-
-  // прогресс "от сейчас до target" (как ты и хочешь — полный интервал до даты)
-  const start = new Date();
-
-  function setCircleProgress(p){
-    if(!circle) return;
-    const r = circle.r && circle.r.baseVal ? circle.r.baseVal.value : null;
-    if(!r) return;
-    const c = 2 * Math.PI * r;
-    circle.style.strokeDasharray = String(c);
-    circle.style.strokeDashoffset = String(c * (1 - p));
-  }
-
-  function tick(){
-    const now = new Date();
-    let diff = Math.floor((target - now) / 1000);
-    if(diff < 0) diff = 0;
-
-    const days = Math.floor(diff / 86400);
-    diff -= days * 86400;
-    const hours = Math.floor(diff / 3600);
-    diff -= hours * 3600;
-    const mins = Math.floor(diff / 60);
-    const secs = diff - mins * 60;
-
-    // ОБНОВЛЯЕМ АККУРАТНО, НЕ ЛОМАЯ СТРУКТУРУ
-    setTimerValue(elDays,  String(days));
-    setTimerValue(elHours, pad2(hours));
-    setTimerValue(elMins,  pad2(mins));
-    setTimerValue(elSecs,  pad2(secs));
-
-    // круг = прогресс до target (полный интервал)
-    const total = target - start;
-    const left  = target - now;
-    let p = 0;
-    if(total > 0) p = 1 - Math.max(0, Math.min(1, left / total));
-    setCircleProgress(p);
-  }
-
-  tick();
-  setInterval(tick, 1000);
-})();
-</script>
 </body>
 
 </html> {% endraw %}

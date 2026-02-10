@@ -19,7 +19,7 @@ code{white-space:pre-wrap}
 <h1>RSVP — ответы</h1>
 <table>
 <thead><tr>
-<th>Когда</th><th>Имя</th><th>Придёт</th><th>Еда</th><th>Алкоголь</th><th>Все поля (JSON)</th>
+<th>Когда</th><th>Имя</th><th>Придёт</th><th>Алкоголь</th><th>Все поля (JSON)</th>
 </tr></thead>
 <tbody>
 {% for r in rows %}
@@ -27,7 +27,6 @@ code{white-space:pre-wrap}
 <td class="small">{{ r.created_at }}</td>
 <td>{{ r.fio or '—' }}</td>
 <td>{% if r.attending is none %}—{% elif r.attending %}<span class="badge ok">да</span>{% else %}<span class="badge no">нет</span>{% endif %}</td>
-<td>{{ r.food or '—' }}</td>
 <td>{{ r.alcohol or '—' }}</td>
 <td><code>{{ r.data_json }}</code></td>
 </tr>

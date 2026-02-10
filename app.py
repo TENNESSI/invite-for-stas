@@ -127,7 +127,7 @@ def rsvp():
     return jsonify({"ok": True})
 
 
-@app.get("/admin")
+@app.get("/df029efhj09wquednfh-9awd8fh-v9a")
 def admin():
     token = os.environ.get("ADMIN_TOKEN")
     if token and request.args.get("token") != token:
