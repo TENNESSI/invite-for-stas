@@ -3,6 +3,8 @@ import os
 from datetime import datetime
 from typing import Any, Dict, Optional
 
+from gspread import Client, Spreadsheet, Worksheet, service_account
+
 from flask import Flask, render_template, request, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 
@@ -13,6 +15,14 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
+def client_init_json() -> Client:
+	return service_account(filename='sowiicup-4ad129b3969f.json')
+
+table_id = "1PIdROf4VFJs5m8iI1LU30edoxmQFDcmp5AYB1DR6lmI"
+client = client_init_json()
+table = client.open_by_key(table_id)
+title = table.worksheets()[0].title
+worksheet = table.worksheet(title)
 
 class RSVP(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -123,6 +133,8 @@ def rsvp():
     )
     db.session.add(rec)
     db.session.commit()
+
+    worksheet.append_row([fields["fio"],fields["attending"],fields["alcohol"],json.dumps(meaningful, ensure_ascii=False)])
 
     return jsonify({"ok": True})
 
